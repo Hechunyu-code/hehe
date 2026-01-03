@@ -38,6 +38,7 @@ const FormPage = () => {
       message.success("表单提交成功！");
       console.log("表单数据：", values);
       form.resetFields();
+      form.setFieldsValue({ agree: false });
     } catch (err) {
       message.error("表单提交失败！");
       console.log(err);
@@ -52,6 +53,7 @@ const FormPage = () => {
 
   const handleReset = () => {
     form.resetFields();
+    form.setFieldValue({ agree: false });
     message.info("表单已重置！");
   };
 
