@@ -107,7 +107,7 @@ const FormPage = () => {
           rules={[{ validator: validatePhone }]}
         >
           <Input
-            placeholder="请输入手机号😃（支持13/14/15/16/17/18/19开头）"
+            placeholder="请输入您的常用手机号（仅支持11位）"
             style={{ border: "1px solid green" }}
           />
         </Form.Item>
