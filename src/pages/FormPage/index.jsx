@@ -106,7 +106,10 @@ const FormPage = () => {
           name="phone"
           rules={[{ validator: validatePhone }]}
         >
-          <Input placeholder="请输入手机号😃（支持13/14/15/16/17/18/19开头）" />
+          <Input
+            placeholder="请输入手机号😃（支持13/14/15/16/17/18/19开头）"
+            style={{ border: "1px solid green" }}
+          />
         </Form.Item>
 
         <Form.Item label="性别" name="gender" rules={[{ required: true }]}>
