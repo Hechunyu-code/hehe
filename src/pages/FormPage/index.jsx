@@ -7,6 +7,7 @@ import {
   InputNumber,
   message,
   Checkbox,
+  Space,
 } from "antd";
 import { useState } from "react";
 import dayjs from "dayjs";
@@ -44,6 +45,11 @@ const FormPage = () => {
     console.log("表单校验失败：", errorInfo);
   };
 
+  const handleReset = () => {
+    form.resetFields();
+    message.info("表单已经重置");
+  };
+
   return (
     <div style={{ maxWidth: 600 }}>
       <Form
@@ -78,7 +84,6 @@ const FormPage = () => {
         >
           <Input placeholder="请输入用户名" />
         </Form.Item>
-
         <Form.Item
           label="邮箱"
           name="email"
@@ -86,7 +91,6 @@ const FormPage = () => {
         >
           <Input placeholder="请输入邮箱" />
         </Form.Item>
-
         <Form.Item
           label="手机号"
           name="phone"
@@ -94,7 +98,6 @@ const FormPage = () => {
         >
           <Input placeholder="请输入手机号" />
         </Form.Item>
-
         <Form.Item label="性别" name="gender" rules={[{ required: true }]}>
           <Select placeholder="请选择性别">
             <Option value="male">男</Option>
@@ -102,7 +105,6 @@ const FormPage = () => {
             <Option value="other">其他</Option>
           </Select>
         </Form.Item>
-
         <Form.Item
           label="年龄"
           name="age"
@@ -118,7 +120,6 @@ const FormPage = () => {
             placeholder="请输入年龄"
           />
         </Form.Item>
-
         <Form.Item
           label="出生日期"
           name="birthday"
@@ -126,7 +127,6 @@ const FormPage = () => {
         >
           <DatePicker style={{ width: "100%" }} />
         </Form.Item>
-
         <Form.Item
           name="agree"
           valuePropName="checked"
@@ -143,9 +143,19 @@ const FormPage = () => {
         </Form.Item>
 
         <Form.Item>
-          <Button type="primary" htmlType="submit" loading={loading} block>
-            提交表单
-          </Button>
+          <Space size="middle" style={{ width: "100%" }}>
+            <Button
+              type="primary"
+              htmlType="submit"
+              loading={loading}
+              style={{ flex: 1 }}
+            >
+              提交表单
+            </Button>
+            <Button type="default" onClick={handleReset} style={{ flex: 1 }}>
+              重置表单
+            </Button>
+          </Space>
         </Form.Item>
       </Form>
     </div>
