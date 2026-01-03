@@ -59,7 +59,9 @@ const FormPage = () => {
 
   return (
     <div style={{ maxWidth: 600, margin: "20px auto" }}>
-      <h2 style={{ textAlign: "center", marginBottom: 20 }}>用户信息表单</h2>
+      <h2 style={{ textAlign: "center", marginBottom: 20 }}>
+        用户信息收集表单🌼
+      </h2>
       <Form
         form={form}
         layout="vertical"
