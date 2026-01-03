@@ -18,11 +18,16 @@ const FormPage = () => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
 
+  // 修复：支持所有主流手机号段的正则
   const validatePhone = (_, value) => {
     if (!value) return Promise.reject(new Error("请输入手机号"));
-    const reg = /^1[3-9]\d{9}$/;
+    // 精准匹配13/14/15/16/17/18/19开头的手机号
+    const reg =
+      /^1(3[0-9]|4[01456879]|5[0-35-9]|6[2567]|7[0-8]|8[0-9]|9[0-35-9])\d{8}$/;
     if (!reg.test(value))
-      return Promise.reject(new Error("请输入正确的手机号"));
+      return Promise.reject(
+        new Error("请输入正确的手机号（支持13/14/15/16/17/18/19开头）")
+      );
     return Promise.resolve();
   };
 
@@ -47,11 +52,12 @@ const FormPage = () => {
 
   const handleReset = () => {
     form.resetFields();
-    message.info("表单已经重置");
+    message.info("表单已重置！");
   };
 
   return (
-    <div style={{ maxWidth: 600 }}>
+    <div style={{ maxWidth: 600, margin: "20px auto" }}>
+      <h2 style={{ textAlign: "center", marginBottom: 20 }}>用户信息表单</h2>
       <Form
         form={form}
         layout="vertical"
@@ -84,6 +90,7 @@ const FormPage = () => {
         >
           <Input placeholder="请输入用户名" />
         </Form.Item>
+
         <Form.Item
           label="邮箱"
           name="email"
@@ -91,13 +98,15 @@ const FormPage = () => {
         >
           <Input placeholder="请输入邮箱" />
         </Form.Item>
+
         <Form.Item
           label="手机号"
           name="phone"
           rules={[{ validator: validatePhone }]}
         >
-          <Input placeholder="请输入手机号" />
+          <Input placeholder="请输入手机号（支持13/14/15/16/17/18/19开头）" />
         </Form.Item>
+
         <Form.Item label="性别" name="gender" rules={[{ required: true }]}>
           <Select placeholder="请选择性别">
             <Option value="male">男</Option>
@@ -105,6 +114,7 @@ const FormPage = () => {
             <Option value="other">其他</Option>
           </Select>
         </Form.Item>
+
         <Form.Item
           label="年龄"
           name="age"
@@ -120,6 +130,7 @@ const FormPage = () => {
             placeholder="请输入年龄"
           />
         </Form.Item>
+
         <Form.Item
           label="出生日期"
           name="birthday"
@@ -127,6 +138,7 @@ const FormPage = () => {
         >
           <DatePicker style={{ width: "100%" }} />
         </Form.Item>
+
         <Form.Item
           name="agree"
           valuePropName="checked"
